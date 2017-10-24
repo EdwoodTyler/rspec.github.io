@@ -2,7 +2,7 @@
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]<!--><html class="no-js" lang="en"><!--<![endif]--><head><meta charset="UTF-8" /><title>RSpec 3.5 がリリースされました！</title><link href="/stylesheets/application.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="/stylesheets/pages/blog.css" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" /><link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" /></head><body class="blog"><header><nav><h1><a href="/">RSpec</a></h1><ul><li><a href="/about">About</a></li><li><a href="/documentation">Documentation</a></li><li><a href="/blog">Blog</a></li><li><a href="/upgrading-from-rspec-2">Upgrade</a></li><li><a href="/help">Get Help</a></li><li><a href="/contributing">Contributing</a></li></ul></nav></header><section><article class="blog_post"><ul class="langs"><li class="lang"><a href="/blog/2016/07/rspec-3-5-has-been-released/">en</a></li><li class="lang current_lang">ja</li></ul><h1>RSpec 3.5 がリリースされました！</h1><h3 class="author">Sam Phippen, Myron Marston, Jon Rowe and Yuji Nakayama</h3><small class="date">Jul  1, 2016</small><p>RSpec 3.5 がリリースされました！
+<!--[if gt IE 8]<!--><html class="no-js" lang="en"><!--<![endif]--><head><meta charset="UTF-8" /><meta content="width=device-width, initial-scale=1" name="viewport" /><title>RSpec 3.5 がリリースされました！</title><link href="/stylesheets/pages/blog.css" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css" /><link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" /><link href="/blog/feed.xml" rel="alternate" type="application/atom+xml" /></head><body class="blog"><header><nav><h1><img alt="Logo" src="/images/logo.png" /><a href="/">RSpec</a></h1><input class="hamburger-toggle" type="checkbox" /><div class="hamburger-icon"><div class="bar"></div><div class="bar"></div><div class="bar"></div></div><ul class="menu"><li><a href="/about">About</a></li><li><a href="/documentation">Documentation</a></li><li><a href="/blog">Blog</a></li><li><a href="/upgrading-from-rspec-2">Upgrade</a></li><li><a href="/help">Get Help</a></li><li><a href="/contributing">Contributing</a></li></ul></nav></header><section><article class="blog_post"><ul class="langs"><li class="lang"><a href="/blog/2016/07/rspec-3-5-has-been-released/">en</a></li><li class="lang current_lang">ja</li></ul><h1>RSpec 3.5 がリリースされました！</h1><h3 class="author">Sam Phippen, Myron Marston, Jon Rowe and Yuji Nakayama</h3><small class="date">Jul  1, 2016</small><p>RSpec 3.5 がリリースされました！
 私たちは <a href="http://semver.org/">semantic versioning</a> に準拠する方針を掲げているため、
 このリリースはすでに RSpec 3 を使っている方にとってなにか対応が必要になるものではありません。
 しかし、もし私たちがバグを作り込んでしまっていた場合は教えてください。
@@ -24,12 +24,12 @@
 そしてそれを必要とする spec ファイルで、まずサポートファイルを require し、example group にタグをつけることで、
 関連付けられたフックやモジュールを include することができます。</p>
 
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'support/db'</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'support/db'</span>
 
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">SomeClassThatUsesTheDB</span><span class="p">,</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>この方法は上手くいきます。しかし、require と <code>:db</code> タグの両方が必要になるのは最適な方法ではないかもしれません。
 その DB を利用するすべての spec において、毎回重複が発生してしまうからです。
 また、もしその DB を使う spec に <code>require 'support/db'</code> を書き忘れてしまった場合、
@@ -41,12 +41,12 @@
 <code>support/db</code> を必要とするすべての spec ファイルでそれを require する代わりに、
 <code>:db</code> タグがついた example が定義されたタイミングでそれを自動的に読み込むように設定できます。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">when_first_matching_example_defined</span><span class="p">(</span><span class="ss">:db</span><span class="p">)</span> <span class="k">do</span>
     <span class="nb">require</span> <span class="s1">'support/db'</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>この新しい <code>when_first_matching_example_defined</code> フックは、
 一致するメタデータを持つ最初の example が定義されたタイミングで発火し、
 メタデータを基に必要なものを読み込むように設定できます。
@@ -58,11 +58,11 @@
 <p>RSpec のメタデータの一般的な使い方の一つとして、focus フィルタがあります。
 RSpec 3.5 以前では、このように focus フィルタを設定していたでしょう。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">filter_run</span> <span class="ss">:focus</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">run_all_when_everything_filtered</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>そして、example か example group に <code>:focus</code> タグをつけることで、RSpec にそれらのみを実行させることができます。
 <code>run_all_when_everything_filtered = true</code> オプションは、
 <code>:focus</code> タグがついたものが何もない場合に RSpec にこのフィルタを無視させるために使います。</p>
@@ -73,10 +73,10 @@ RSpec 3.5 以前では、このように focus フィルタを設定していた
 この問題に関して、私たちは <code>:focus</code> を <em>条件付きの</em> フィルタとしてセットアップできれば上手くいくと考え、
 RSpec 3.5 では以下のように設定できるようにしました。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">filter_run_when_matching</span> <span class="ss">:focus</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>この設定を使うと、<code>:focus</code> タグのついた example か example group が一つ以上存在する場合にのみ、
 <code>:focus</code> フィルタが有効になります。また、以前より短く、シンプルな設定になります！</p>
 
@@ -87,8 +87,8 @@ RSpec 3.5 では以下のように設定できるようにしました。</p>
 例えばその場で一度だけ、高速なユニット spec を、時間のかかる受け入れ spec の前に実行したいという場合、
 このように RSpec を実行します。</p>
 
-<pre class="highlight plaintext"><code>$ rspec spec/unit spec/acceptance --order defined
-</code></pre>
+<div class="highlight"><pre class="highlight plaintext"><code>$ rspec spec/unit spec/acceptance --order defined
+</code></pre></div>
 <p>この <code>--order defined</code> オプションは、
 あなたのプロジェクトでデフォルトの実行順序をランダムに設定（推奨）している場合にのみ必要になります。</p>
 
@@ -99,7 +99,7 @@ RSpec 3.5 では以下のように設定できるようにしました。</p>
 をサポートしてきました。
 Shared context はこんな風に定義します。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"DB support"</span> <span class="k">do</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"DB support"</span> <span class="k">do</span>
   <span class="n">let</span><span class="p">(</span><span class="ss">:db</span><span class="p">)</span> <span class="p">{</span> <span class="no">MyORM</span><span class="p">.</span><span class="nf">database</span> <span class="p">}</span>
 
   <span class="c1"># それぞれの example をトランザクションで囲う</span>
@@ -116,16 +116,16 @@ Shared context はこんな風に定義します。</p>
     <span class="n">db</span><span class="p">.</span><span class="nf">logger</span><span class="p">.</span><span class="nf">info</span> <span class="s2">"Ending example: </span><span class="si">#{</span><span class="n">ex</span><span class="p">.</span><span class="nf">metadata</span><span class="p">[</span><span class="ss">:full_description</span><span class="si">}</span><span class="s2">"</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>この shared context を使うには、任意の example group で <code>include_context</code> を使って include します。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">MyModel</span> <span class="k">do</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">MyModel</span> <span class="k">do</span>
   <span class="n">include_context</span> <span class="s2">"DB support"</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>また、 メタデータによって <em>暗黙的に</em> shared context を include する方法もあります。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"DB support"</span><span class="p">,</span> <span class="ss">:db</span> <span class="k">do</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"DB support"</span><span class="p">,</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
 
@@ -134,7 +134,7 @@ Shared context はこんな風に定義します。</p>
 <span class="no">RSpec</span><span class="p">.</span><span class="nf">describe</span> <span class="no">MyModel</span><span class="p">,</span> <span class="ss">:db</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>この方法はまあまあ上手くいきます。しかし、いくつかの問題がありました。</p>
 
 <ul>
@@ -154,10 +154,10 @@ Shared context はこんな風に定義します。</p>
 
 <p><code>RSpec.configure</code> ブロック内で、shared context の include 定義ができるようになりました。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">include_context</span> <span class="s2">"DB support"</span><span class="p">,</span> <span class="ss">:db</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>これは、モジュールを include するための既存の <code>config.include</code> API と一貫しており、
 メタデータを基に shared context を include するためのわかりやすい方法を提供します。
 さらに、shared context をすべての example group に include することもできます（メタデータ引数を省略すれば良いだけ）。</p>
@@ -166,12 +166,12 @@ Shared context はこんな風に定義します。</p>
 
 <p>Shared context のメタデータの挙動を変更するための設定も追加されました。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">shared_context_metadata_behavior</span> <span class="o">=</span> <span class="ss">:trigger_inclusion</span>
   <span class="c1"># または</span>
   <span class="n">config</span><span class="p">.</span><span class="nf">shared_context_metadata_behavior</span> <span class="o">=</span> <span class="ss">:apply_to_host_groups</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <p>前者（<code>:trigger_inclusion</code>）はデフォルトの挙動であり、後方互換性のためだけに存在しています。
 この場合、<code>RSpec.shared_context</code> に渡されたメタデータは
 RSpec 3.4 までと同様
@@ -184,10 +184,10 @@ include した側の example group に適用されるようになります。
 例えば DB shared context に <code>:focus</code> タグをつけることによって、
 それに依存するすべての example group のみを実行することができます。</p>
 
-<pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"DB support"</span><span class="p">,</span> <span class="ss">:focus</span> <span class="k">do</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="no">RSpec</span><span class="p">.</span><span class="nf">shared_context</span> <span class="s2">"DB support"</span><span class="p">,</span> <span class="ss">:focus</span> <span class="k">do</span>
   <span class="c1"># ...</span>
 <span class="k">end</span>
-</code></pre>
+</code></pre></div>
 <h3 id="expectations-respondto-">Expectations: <code>respond_to</code> マッチャのキーワード引数サポート</h3>
 
 <p>キーワード引数が Ruby の安定した言語機能となってしばらく経ちましたが、
@@ -197,14 +197,14 @@ include した側の example group に適用されるようになります。
 オブジェクトが任意のメソッドに応答するかどうかを、キーワード引数を使って検証できるようになりました。
 メソッドが任意のキーワード引数を受け取るかどうかや、通常引数のカウントを検証することができます。</p>
 
-<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">my_object</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:find</span><span class="p">).</span><span class="nf">with_keywords</span><span class="p">(</span><span class="ss">:limit</span><span class="p">,</span> <span class="ss">:offset</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">my_object</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:find</span><span class="p">).</span><span class="nf">with_keywords</span><span class="p">(</span><span class="ss">:limit</span><span class="p">,</span> <span class="ss">:offset</span><span class="p">)</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">my_object</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:find</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nf">argument</span><span class="p">.</span><span class="nf">and_keywords</span><span class="p">(</span><span class="ss">:limit</span><span class="p">,</span> <span class="ss">:offset</span><span class="p">)</span>
-</code></pre>
+</code></pre></div>
 <p>さらに、幅のある引数カウントや、無限に引数を受け取れるかどうかも検証できます。</p>
 
-<pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">my_object</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:build</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="nf">.</span><span class="mi">3</span><span class="p">).</span><span class="nf">arguments</span>
+<div class="highlight"><pre class="highlight ruby"><code><span class="n">expect</span><span class="p">(</span><span class="n">my_object</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:build</span><span class="p">).</span><span class="nf">with</span><span class="p">(</span><span class="mi">2</span><span class="o">..</span><span class="mi">3</span><span class="p">).</span><span class="nf">arguments</span>
 <span class="n">expect</span><span class="p">(</span><span class="n">my_object</span><span class="p">).</span><span class="nf">to</span> <span class="n">respond_to</span><span class="p">(</span><span class="ss">:build</span><span class="p">).</span><span class="nf">with_unlimited_arguments</span>
-</code></pre>
+</code></pre></div>
 <p>これを実装してくれた Rob Smith、ありがとう。</p>
 
 <h3 id="expectations-minitest-56-">Expectations: Minitest 5.6+ のサポート</h3>
@@ -214,8 +214,8 @@ include した側の example group に適用されるようになります。
 Minitest とのインテグレーションも提供しており、
 Minitest 自身を読み込んだ後に rspec-expectations の Minitest サポートを読み込むことで利用できます。</p>
 
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rspec/expectations/minitest_integration'</span>
-</code></pre>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rspec/expectations/minitest_integration'</span>
+</code></pre></div>
 <p>しかし Minitest は、バージョン 5.6 においてそれ自身の <code>expect</code> メソッドを導入したため、
 RSpec の <code>expect</code> と衝突し、このインテグレーションが壊れてしまいました。
 rspec-expectations 3.5 にはこのための修正が含まれています。</p>
@@ -229,8 +229,8 @@ rspec-mocks に関しては同レベルの簡単なインテグレーション�
 rspec-mock 3.5 では、ファーストクラスの Minitest サポートを提供します。
 これを利用するには、ただインテグレーションファイルを require するだけです。</p>
 
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rspec/mocks/minitest_integration'</span>
-</code></pre>
+<div class="highlight"><pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rspec/mocks/minitest_integration'</span>
+</code></pre></div>
 <h3 id="rails-rails-5-">Rails: Rails 5 のサポート</h3>
 
 <p>今回の重大ニュースは、RSpec 3.5.0 が Rails 5 をサポートしたという点です。
