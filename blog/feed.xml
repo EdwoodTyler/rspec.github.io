@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://rspec.info/blog/2017/10/rspec-3-7-has-been-released/"/>
     <id>http://rspec.info/blog/2017/10/rspec-3-7-has-been-released/</id>
     <published>2017-10-17T00:00:00Z</published>
-    <updated>2017-10-24T11:06:07+09:00</updated>
+    <updated>2017-10-28T23:39:08+09:00</updated>
     <author>
       <name>Sam Phippen</name>
     </author>
@@ -234,7 +234,7 @@ that raise odd errors from &lt;code&gt;#to_str&lt;/code&gt;. (Myron Marston, #31
     <link rel="alternate" href="http://rspec.info/blog/2017/09/effective-testing-with-rspec-3-released/"/>
     <id>http://rspec.info/blog/2017/09/effective-testing-with-rspec-3-released/</id>
     <published>2017-09-11T00:00:00Z</published>
-    <updated>2017-10-24T11:06:07+09:00</updated>
+    <updated>2017-10-28T23:39:08+09:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -279,7 +279,7 @@ from the book to get an idea of what it's like.&lt;/p&gt;
     <link rel="alternate" href="http://rspec.info/blog/2017/05/rspec-3-6-has-been-released/"/>
     <id>http://rspec.info/blog/2017/05/rspec-3-6-has-been-released/</id>
     <published>2017-05-04T00:00:00Z</published>
-    <updated>2017-10-24T11:06:02+09:00</updated>
+    <updated>2017-10-28T23:39:08+09:00</updated>
     <author>
       <name>Sam Phippen, Myron Marston, Jon Rowe</name>
     </author>
@@ -779,7 +779,7 @@ Justice, #1689)&lt;/li&gt;
     <link rel="alternate" href="http://rspec.info/blog/2017/02/now-in-beta-effective-testing-with-rspec-3/"/>
     <id>http://rspec.info/blog/2017/02/now-in-beta-effective-testing-with-rspec-3/</id>
     <published>2017-02-15T00:00:00Z</published>
-    <updated>2017-10-24T11:06:02+09:00</updated>
+    <updated>2017-10-28T23:39:08+09:00</updated>
     <author>
       <name>Myron Marston</name>
     </author>
@@ -830,7 +830,7 @@ throughout.&lt;/p&gt;
     <link rel="alternate" href="http://rspec.info/blog/2016/07/rspec-3-5-has-been-released/"/>
     <id>http://rspec.info/blog/2016/07/rspec-3-5-has-been-released/</id>
     <published>2016-07-01T00:00:00Z</published>
-    <updated>2017-10-24T11:06:02+09:00</updated>
+    <updated>2017-10-28T23:39:08+09:00</updated>
     <author>
       <name>Sam Phippen, Myron Marston and Jon Rowe</name>
     </author>
@@ -1500,7 +1500,7 @@ cause &lt;code&gt;SystemStackError&lt;/code&gt;. (Yuji Nakayama, #270, #272)&lt;
     <link rel="alternate" href="http://rspec.info/blog/2016/02/rspec-3-5-0-beta1-has-been-released/"/>
     <id>http://rspec.info/blog/2016/02/rspec-3-5-0-beta1-has-been-released/</id>
     <published>2016-02-06T00:00:00Z</published>
-    <updated>2017-10-24T11:06:02+09:00</updated>
+    <updated>2017-10-28T23:39:08+09:00</updated>
     <author>
       <name>Sam Phippen</name>
     </author>
