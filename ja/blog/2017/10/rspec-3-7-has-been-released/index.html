@@ -27,7 +27,7 @@ RSpec プロジェクトは <a href="http://semver.org/">Semantic Versioning</a>
 しかし、Feature Spec と今回追加された System Spec（System Test の RSpec 版）には以下のような違いがあります。</p>
 
 <ol>
-  <li>Feature Spec では、JavaScript が有効な Capybara ドライバー（Selenium や Poltergeist) を使った場合、
+  <li>Feature Spec では、JavaScript が有効な Capybara ドライバー（Selenium や Poltergeist）を使った場合、
 テストは Rails とは<strong>別のプロセス</strong>で実行されます。
 その結果、テストプロセスと Rails プロセス間でデータベースのトランザクションが共有されないため、
 RSpec 標準のデータベースロールバック機構を利用できず、
