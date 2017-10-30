@@ -21,7 +21,7 @@ RSpec プロジェクトは <a href="http://semver.org/">Semantic Versioning</a>
 <h3 id="rails-actiondispatchsystemtest--system-spec">Rails: <code>ActionDispatch::SystemTest</code> との統合 (System Spec)</h3>
 
 <p>Rails 5.1 では、System Test と呼ばれる新しいタイプのテストが追加されました。
-これは Capyara を利用し、フロントエンドの JavaScript からサーバーサイドのデータベースまでフルスタックのテストを可能にするものです。</p>
+これは Capybara を利用し、フロントエンドの JavaScript からサーバーサイドのデータベースまでフルスタックのテストを可能にするものです。</p>
 
 <p>RSpec には以前から <a href="https://relishapp.com/rspec/rspec-rails/docs/feature-specs/feature-spec">Feature Spec</a> という同様の機能がありました。
 しかし、Feature Spec と今回追加された System Spec（System Test の RSpec 版）には以下のような違いがあります。</p>
@@ -34,7 +34,7 @@ RSpec 標準のデータベースロールバック機構を利用できず、
 代わりに <a href="https://github.com/DatabaseCleaner/database_cleaner">Database Cleaner</a> のような gem を使う必要がありました。
 Rails 開発チームは System Test でこのような問題が発生しないように実装をしました。
 そのおかげで、System Spec では別の gem を利用することなく RSpec のロールバック機構を利用できます。</li>
-  <li>RSpec の Feature Spec はデフォルトの Capyara ドライバーとして <code>Rack::Test</code> を利用します。
+  <li>RSpec の Feature Spec はデフォルトの Capybara ドライバーとして <code>Rack::Test</code> を利用します。
 もし Selenium のような JavaScript が有効なドライバーを使いたい場合は、
 ユーザーが自身で Capybara の設定をする必要がありますが、この設定はかなり高度で難しいものでした。
 System Spec でデフォルトで Selenium 経由で Chrome を利用しますが、
